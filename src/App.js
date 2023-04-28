@@ -20,10 +20,10 @@ const App = () => {
   canvas.width = 1280
   canvas.height = 720
 
-  const gravity = 1.5
+  const gravity = 0.5
   class Player {
     constructor() {
-      this.speed = 10
+      this.speed = 5
       this.position = {
         x: 500,
         y: 5
@@ -53,7 +53,7 @@ const App = () => {
       }
       this.currentSpirte = this.sprites.stand.right
       this.currentCropWidth = 75
-      this.currentFrame = 65
+      this.currentFrame = 60
       this.currentHeightRun = 0
     }
 
@@ -263,7 +263,7 @@ const App = () => {
       case 87:
         console.log('up')
         if (player.onground == true) {
-          player.velocity.y -= 20
+          player.velocity.y -= 15
           player.onground = false
         }
 
