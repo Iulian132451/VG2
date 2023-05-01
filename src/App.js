@@ -8,14 +8,34 @@ import runningLeft from './img/runningLeft.png'
 import movingPlatform from './img/movingPlatform.png'
 import React, { useRef, useEffect } from "react";
 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyD7_w1uhC_slf5MpweGKL-zewquOkZMilA",
+  authDomain: "iulian2d-c9ad4.firebaseapp.com",
+  projectId: "iulian2d-c9ad4",
+  storageBucket: "iulian2d-c9ad4.appspot.com",
+  messagingSenderId: "386751784357",
+  appId: "1:386751784357:web:c9b7a861d3102c4237344c",
+  measurementId: "G-RNE898F2X5"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
 const App = () => {
   const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
-
-    // Now you can use the context object to draw on the canvas
 
   canvas.width = 1280
   canvas.height = 720
@@ -180,8 +200,6 @@ const App = () => {
     requestAnimationFrame(animate)
     ctx.fillStyle = 'white'
     ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-    console.log(player.onground + " on ground")
 
     GenericObjects.forEach(genericObject => {
       genericObject.draw()
