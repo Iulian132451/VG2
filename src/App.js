@@ -1,3 +1,4 @@
+import { getDatabase, ref, set } from "firebase/database";
 import platform from './img/Platform1.png'
 import hills from './img/hills.png'
 import background from './img/background.png'
@@ -10,7 +11,7 @@ import React, { useRef, useEffect } from "react";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -28,7 +29,14 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const db = getDatabase(app);
+
+function savePlayerPosition(position) {
+  const playersRef = ref(db, "players");
+  set(playersRef.child("player1"), position);
+  
+  
+}
 
 const App = () => {
   const canvasRef = useRef(null);
@@ -40,7 +48,10 @@ const App = () => {
   canvas.width = 1280
   canvas.height = 720
 
+  
+
   const gravity = 0.5
+  
   class Player {
     constructor() {
       this.speed = 5
@@ -48,6 +59,7 @@ const App = () => {
         x: 500,
         y: 5
       }
+
       this.velocity = {
         x: 0,
         y: 1
@@ -76,6 +88,17 @@ const App = () => {
       this.currentFrame = 60
       this.currentHeightRun = 0
     }
+
+    moveRight() {
+      this.position.x += this.speed;
+      savePlayerPosition(this.position);
+    };
+    moveLeft() {
+      this.position.x -= this.speed;
+      savePlayerPosition(this.position);
+    };
+    
+    
 
     draw() {
       ctx.drawImage(this.currentSpirte, this.currentCropWidth * this.frames, this.currentHeightRun, 75, this.currentCropWidth, this.position.x, this.position.y, this.width, this.height)
@@ -250,6 +273,7 @@ const App = () => {
       init()
     }
   }
+  
   init()
   animate()
 
