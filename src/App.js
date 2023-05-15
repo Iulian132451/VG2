@@ -304,7 +304,7 @@ const App = () => {
         break
       case 87:
         console.log('up')
-        if (player.onground == true) {
+        if (player.onground === true) {
           player.velocity.y -= 15
           player.onground = false
         }
