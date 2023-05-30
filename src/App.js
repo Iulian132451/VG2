@@ -195,7 +195,7 @@ const App = () => {
 
     player = new Player()
     platforms = [
-      new Platform({ x: 0, y: 470, image: platformImage }),
+      new Platform({ x: 0, y: 500, image: platformImage }),
       new Platform({ x: 500, y: 470, image: platformImage }),
       new Platform({ x: 1000, y: 470, image: platformImage }),
       new Platform({ x: 1700, y: 470, image: platformImage }),
