@@ -1,4 +1,8 @@
-import { getDatabase, ref, set } from "firebase/database";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import CreateUser from './components/CreateUser'
+import EditUser from './components/EditUser'
+import ListUser from './components/ListUser'
+
 import platform from './img/Platform1.png'
 import hills from './img/hills.png'
 import background from './img/background.png'
@@ -9,34 +13,7 @@ import runningLeft from './img/runningLeft.png'
 import movingPlatform from './img/movingPlatform.png'
 import React, { useRef, useEffect } from "react";
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyD7_w1uhC_slf5MpweGKL-zewquOkZMilA",
-  authDomain: "iulian2d-c9ad4.firebaseapp.com",
-  projectId: "iulian2d-c9ad4",
-  storageBucket: "iulian2d-c9ad4.appspot.com",
-  messagingSenderId: "386751784357",
-  appId: "1:386751784357:web:c9b7a861d3102c4237344c",
-  measurementId: "G-RNE898F2X5"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-
-function savePlayerPosition(position) {
-  const playersRef = ref(db, "players");
-  set(playersRef.child("player1"), position);
-  
-  
-}
 
 const App = () => {
   const canvasRef = useRef(null);
@@ -47,8 +24,6 @@ const App = () => {
 
   canvas.width = 1280
   canvas.height = 720
-
-  
 
   const gravity = 0.5
   
@@ -91,11 +66,9 @@ const App = () => {
 
     moveRight() {
       this.position.x += this.speed;
-      savePlayerPosition(this.position);
     };
     moveLeft() {
       this.position.x -= this.speed;
-      savePlayerPosition(this.position);
     };
     
     
@@ -200,6 +173,7 @@ const App = () => {
       new Platform({ x: 1000, y: 470, image: platformImage }),
       new Platform({ x: 1700, y: 470, image: platformImage }),
       new Platform({ x: 2400, y: 470, image: platformImage }),
+      new Platform({ x: 3000, y: 470, image: platformImage }),
       
     ]
     GenericObjects = [
@@ -337,12 +311,34 @@ const App = () => {
     }
     console.log(keys.right.presssed)
   })
+  
 
 }
    
   , []);
-
-  return <canvas ref={canvasRef} width={500} height={500} />;
+  return (
+    <div>
+      <BrowserRouter>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">List User</Link>
+            </li>
+            <li>
+              <Link to="/user/create">Create User</Link>
+            </li>
+          </ul>
+        </nav>
+        <Routes>
+          <Route index element={<ListUser />}/>
+          <Route path="user/create" element={<CreateUser />} />
+          <Route path="user/:id/edit" element={<EditUser />} />
+        </Routes>
+      </BrowserRouter>
+      <canvas ref={canvasRef} width={500} height={500} />
+    </div>
+  );  
 }
+
 
 export default App
