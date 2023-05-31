@@ -27,5 +27,5 @@ connection.end((error) => {
     console.log('Error closing the connection: ' + error.message);
     return;
   }
-  console.log('Connection closed successfully');
+  console.log('Connection closed');
 });
