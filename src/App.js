@@ -332,7 +332,7 @@ const App = () => {
         <Routes>
           <Route index element={<ListUser />}/>
           <Route path="user/create" element={<CreateUser />} />
-          <Route path="user/:id/edit" element={<EditUser />} />
+          <Route path="user/:id/edit" element={<EditUser/>} />
         </Routes>
       </BrowserRouter>
       <canvas ref={canvasRef} width={500} height={500} />
