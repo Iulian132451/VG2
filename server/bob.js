@@ -1,6 +1,6 @@
 const mysql = require('mysql');
 const connection = mysql.createConnection({
-  host: '172.21.91.203',
+  host: '172.21.184.213',
   user: 'iulianserver', 
   port: '3306',
   password: '1234',
@@ -18,7 +18,13 @@ connection.query('SELECT * FROM listuser', function(err, rows, fields)
 {  
   if (err) throw err;  
 
-  console.log(rows[0]);  
+  console.log(rows[0]);
+  console.log(rows[1]);
+  console.log(rows[2]);
+  console.log(rows[3]);
+  console.log(rows[4]);
+  console.log(rows[5]);
+  console.log(rows[6]);  
 
 });  
 
