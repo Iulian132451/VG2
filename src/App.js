@@ -172,7 +172,7 @@ const App = () => {
       new Platform({ x: 500, y: 470, image: platformImage }),
       new Platform({ x: 1000, y: 470, image: platformImage }),
       new Platform({ x: 1700, y: 470, image: platformImage }),
-      new Platform({ x: 2400, y: 470, image: platformImage }),
+      new Platform({ x: 2400, y: 500, image: platformImage }),
       new Platform({ x: 3000, y: 470, image: platformImage }),
       new Platform({ x: 3500, y: 470, image: platformImage }),
     ]
